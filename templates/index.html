@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+</head>
+<body class="body">
+<nav class="navbar">
+    <ul>
+        <li><img src="{% static 'images/elon.png' %}" alt="Elon" width="75"></li>
+        <li><h1>E'LON</h1></li>
+        <li><a href="{% url 'add_post' %}">Add Post</a></li>
+        <li><a href="{% url 'homepage' %}">Home</a></li>
+       <li class="tooltip">
+    <img src="{% static 'images/dark.png' %}" width="30">
+    <span class="tooltiptext">dark mode</span>
+</li>
+
+    </ul>
+</nav>
+
+<div class="coll">
+    <p align="left">email: uzelon@mail.ru</p>
+ <p align="right">Aloqa +99850 708 7799</p>
+</div>
+
+ <div class="search-container">
+
+            <input class="search-bar" type="text"  placeholder=" What are you looking for?">
+            <button class="search-btn">Search</button>
+
+    </div>
+
+<p class="subheading" align="center">Sections!</p>
+<div class="container">
+    {% for category, color in categories_with_colors %}
+        <a href="{% url 'categories' category.id %}">
+            <div class="sections">
+            <img class="pngs" style="background-color: rgb({{ color }});"
+                    src="{{ category.image.url }}" width="100">
+                <h3>{{ category.name }}</h3>
+            </div>
+        </a>
+    {% endfor %}
+
+    <a href="{% url 'all_posts' %}">
+        <div class="sections">
+            <img class="pngs" src="{% static 'images/barchasi.png' %}">
+            <h3>Barchasi</h3>
+        </div>
+    </a>
+</div>
+
+
+
+
+
+    <p align="center"><a href="{% url 'add_post' %}"><button class="button"  >Add Post</button><a/></p>
+<footer>
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3>Advertisements</h3>
+      <p>Your go-to platform for the best ads in town. Get your product or service in front of thousands today! </p>
+    </div>
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Advertise With Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Subscribe</h3>
+      <form>
+        <input type="email" placeholder="Your Email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="footer-column">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+       <img src="{% static 'images/facebook.png' %}" width="30" alt="Facebook">
+        <img src="{% static 'images/twitter.png' %}" width="30" alt="Twitter">
+        <img src="{% static 'images/instagram.png' %}"width="30" alt="Instagram">
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Advertisements. All Rights Reserved.</p>
+  </div>
+</footer>

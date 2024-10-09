@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all_posts.css' %}">
+    <meta charset="UTF-8">
+    <title>{{ ad.name }}</title>
+</head>
+<body>
+<nav class="navbar">
+    <ul>
+        <li><img src="{% static 'images/elon.png' %}" alt="Elon" width="75"></li>
+        <li><h1>E'LON</h1></li>
+        <li><a href="{% url 'add_post' %}">Add Post</a></li>
+        <li><a href="{% url 'homepage' %}">Home</a></li>
+       <li class="tooltip">
+    <img src="media/images/dark.png" width="30" alt="Dark Icon">
+    <span class="tooltiptext">dark mode</span>
+</li>
+
+    </ul>
+</nav>
+
+<div class="coll">
+ <p align="right">Aloqa +99850 708 7799</p>
+</div>
+
+ <div class="search-container">
+            <input class="search-bar" type="text"  placeholder="What are you looking for?">
+            <button class="search-btn">Search</button>
+ </div>
+
+
+<div class="ad-section">
+    <div class="section-image">
+        <img src="{{ ad.image.url }}" alt="{{ ad.name }}">
+    </div>
+    <div class="content-description">
+        <div class="section-content">
+            <h3>{{ ad.name }}</h3>
+            <hr>
+            <h4>{{ ad.price }}</h4>
+            <hr>
+            <p>Address: {{ ad.address }}</p>
+            <hr>
+            <p>{{ ad.phone }}</p>
+            <hr>
+            <p>{{ ad.created }}</p>
+        </div>
+        <div class="description-box">
+            <h3 align="center">Description</h3>
+            <hr>
+            <p>{{ ad.description|truncatewords:140 }}</p>
+        </div>
+    </div>
+</div>
+
+<p class="subheading" align="center">O'xshash E'lonlar</p>
+
+
+<div class="container">
+    {% for ad in ads %}
+    <div class="ad">
+        <img src="{{ ad.image.url }}" alt="Advertisement" width="300" height="400">
+        <h3>{{ ad.name|truncatewords:3 }}</h3>
+
+        <div class="view-more">
+            <h2>$: {{ ad.price }}</h2>
+            <p align="right"><a href="{% url 'view_more' ad.id %}" >View More</a></p>
+        </div>
+
+        <p>tel: {{ ad.phone }}</p>
+        <p align="right">{{ ad.created }}</p>
+
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+<p align="center"><a href="{% url 'add_post' %}"><button class="button"  >Add Post</button><a/></p>
+<footer>
+    <p>&copy; 2022 E'LON. All rights reserved.</p>
+    <div class="social-media">
+        <img src="media/images/facebook.png" width="30" alt="Facebook">
+        <img src="media/images/twitter.png" width="30" alt="Twitter">
+        <img src="media/images/instagram.png" width="30" alt="Instagram">
+    </div>
+    <div class="language">
+        <img src="media/images/russian.png" width="20" alt="Russian">
+        <img src="media/images/english.jpg" width="20" alt="English">
+    </div>
+</footer>
